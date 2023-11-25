@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Bloodtype } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const pages = ["Home","Donation-Requests", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -21,6 +22,10 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 
 function NavBar() {
+
+  // const {user} = useAuth()
+  // console.log(user)
+
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
