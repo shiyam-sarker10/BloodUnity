@@ -5,6 +5,8 @@ import DonationReq from "../pages/DonationReq/DonationReq";
 import Blog from './../pages/Blog/Blog';
 import Login from "../pages/Login/Login";
 import Register from './../pages/Register/Register';
+import Dashboard from './../layout/Dashboard/Dashboard';
+import DashboardProfile from "../layout/Dashboard/Dashboard Route/DashboardProfile";
 
 
 const Router = createBrowserRouter([
@@ -33,6 +35,16 @@ const Router = createBrowserRouter([
   {
     path: "/register",
     element: <Register></Register>,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children:[
+    {
+      path:'/dashboard/profile',
+      element:<DashboardProfile></DashboardProfile>
+    }
+  ]
   },
 ]);
 
