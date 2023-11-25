@@ -11,11 +11,12 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Bloodtype } from "@mui/icons-material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import { Button } from "@mui/material";
 
 const pages = ["Home","Donation-Requests", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Dashboard"];
 
 
  
@@ -23,8 +24,26 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBar() {
 
-  // const {user} = useAuth()
-  // console.log(user)
+  // auth user
+
+  const { user,LogOut } = useAuth();
+  console.log(user)
+
+
+
+  // Logout function 
+  const handleLogout = () => {
+    LogOut()
+    .then(result => {
+
+    })
+    .catch(error => {
+
+    })
+  }
+
+
+
 
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -46,8 +65,8 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#C91C1C", py:'8px' }}>
-      <Container maxWidth="xl">
+    <AppBar position="static" sx={{ backgroundColor: "#EB2C29", py: "8px" }}>
+      <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Bloodtype
             sx={{
@@ -112,7 +131,7 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          <Bloodtype sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          
           <Typography
             variant="h6"
             noWrap
@@ -156,44 +175,70 @@ function NavBar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <NavLink
-                  to={`/dashboard/${setting}`}
-                  key={setting}
-                  onClick={handleCloseUserMenu}
-                  className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                  }
-                >
-                  <MenuItem>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                </NavLink>
-              ))}
-            </Menu>
-          </Box>
+          {user ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  {user && (
+                    <img
+                      className="w-[50px] h-[50px] rounded-full object-cover"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  )}
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <NavLink
+                    to={`/dashboard/${setting}`}
+                    key={setting}
+                    onClick={handleCloseUserMenu}
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "active" : ""
+                    }
+                  >
+                    <MenuItem>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  </NavLink>
+                ))}
+                <MenuItem>
+                  <Button
+                    onClick={handleLogout}
+                    textAlign="center"
+                    sx={{ color: "red", border: "1px solid red" }}
+                  >
+                    Logout
+                  </Button>
+                </MenuItem>
+              </Menu>
+            </Box>
+          ) : (
+            <Link to="/register">
+              <button
+                type="button"
+                className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 border-[1px]"
+              >
+                Register
+              </button>
+            </Link>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

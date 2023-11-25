@@ -3,11 +3,30 @@ import { Checkbox, TextField } from '@mui/material';
 import useAuth from './../../hooks/useAuth';
 import { Bloodtype } from '@mui/icons-material';
 import {  red } from '@mui/material/colors';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const label = { inputProps: { "aria-label": "Checkbox demo" } };
+    const { signIn, user } = useAuth();
+    const loginNavigate = useNavigate()
+   
     const handleSubmit = (e) => {
         e.preventDefault()
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email,password)
+        signIn(email,password)
+        .then(res => {
+            toast.success("Login successful");
+            loginNavigate('/')
+
+        })
+        .catch(error => {
+            toast.error(`${error}`);
+            console.log(error)
+        })
+
     }
     
     return (
