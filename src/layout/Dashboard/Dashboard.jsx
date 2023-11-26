@@ -20,10 +20,16 @@ import useAuth from "../../hooks/useAuth";
 import { Avatar } from "@mui/material";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { Link, Outlet } from 'react-router-dom';
+import useUserInfo from "../../hooks/useUserInfo";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
+     const [UserInfo] = useUserInfo();
 
     const {user} = useAuth();
     console.log(user)
@@ -39,7 +45,7 @@ function ResponsiveDrawer(props) {
       <div className="flex flex-col items-center space-y-3 py-8">
         <Avatar
           alt="Remy Sharp"
-          src={user?.photoURL}
+          src={UserInfo?.imageUrl}
           sx={{ width: 70, height: 70 }}
         />
         <Typography
@@ -50,50 +56,62 @@ function ResponsiveDrawer(props) {
             color: "white",
           }}
         >
-          {user?.displayName}
+          {UserInfo?.name}
         </Typography>
       </div>
 
-      <Link to="/dashboard/profile">
-        <List sx={{ color: "white" }}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {" "}
-                <AccountBoxIcon
-                  sx={{ mr: 1, fontSize: "25px", color: "white" }}
-                />{" "}
-              </ListItemIcon>
-              Profile
-              <ListItemText />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Link>
-      {/* <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
+      <List>
+        {["Dashboard", "Profile", "Create Request", "My Request"].map(
+          (text, index) => (
+            <Link
+              key={index}
+              to={`/dashboard${
+                text === "Dashboard" ? "" : `/${text.toLowerCase()}`
+              }`}
+            >
+              <ListItem disablePadding>
+                <ListItemButton sx={{ color: "white" }}>
+                  <ListItemIcon sx={{ color: "white" }}>
+                    {(index === 0 && (
+                      <DashboardIcon
+                        sx={{ mr: 1, fontSize: "25px", color: "white" }}
+                      />
+                    )) ||
+                      (index === 1 && (
+                        <AccountBoxIcon
+                          sx={{ mr: 1, fontSize: "25px", color: "white" }}
+                        />
+                      )) ||
+                      (index === 2 && (
+                        <MedicalServicesIcon
+                          sx={{ mr: 1, fontSize: "25px", color: "white" }}
+                        />
+                      )) ||
+                      (index === 3 && (
+                        <HandshakeIcon
+                          sx={{ mr: 1, fontSize: "25px", color: "white" }}
+                        />
+                      ))}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          )
+        )}
+      </List>
+
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem disablePadding>
+          <ListItemButton sx={{ color: "white" }}>
+            <ListItemIcon>
+              <ExitToAppIcon sx={{ mr: 1, fontSize: "25px", color: "white" }} />
+            </ListItemIcon>
+            LogOut
+            <ListItemText />
+          </ListItemButton>
+        </ListItem>
       </List>
     </div>
   );
@@ -165,9 +183,17 @@ function ResponsiveDrawer(props) {
           {drawer}
         </Drawer>
       </Box>
-      <div>
-        <Outlet></Outlet>
-      </div>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <Toolbar />
+        <Outlet />
+      </Box>
     </Box>
   );
 }

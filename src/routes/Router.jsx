@@ -7,6 +7,8 @@ import Login from "../pages/Login/Login";
 import Register from './../pages/Register/Register';
 import Dashboard from './../layout/Dashboard/Dashboard';
 import DashboardProfile from "../layout/Dashboard/Dashboard Route/DashboardProfile";
+import DashboardWelcome from "../layout/Dashboard/Dashboard Route/DashboardWelcome";
+import DonorDashboardCreateReq from "../layout/Dashboard/Dashboard Route/donor/DonorDashboardCreateReq";
 
 
 const Router = createBrowserRouter([
@@ -41,8 +43,16 @@ const Router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children:[
     {
+      index:true,
+      element:<DashboardWelcome></DashboardWelcome>
+    },
+    {
       path:'/dashboard/profile',
       element:<DashboardProfile></DashboardProfile>
+    },
+    {
+      path:'/dashboard/create request',
+      element:<DonorDashboardCreateReq></DonorDashboardCreateReq>
     }
   ]
   },
