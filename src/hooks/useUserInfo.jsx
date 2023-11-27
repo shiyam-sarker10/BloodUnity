@@ -7,7 +7,7 @@ import useAxiosPublic from './useAxiosPublic';
 
 const useUserInfo = () => {
     const axiosSecure = useAxiosSecure();
-    const axiosPublic = useAxiosPublic()
+
     const { user } = useAuth();
     const { refetch, data: UserInfo,isLoading } = useQuery({
       queryKey: ["SingleUser", user?.email],

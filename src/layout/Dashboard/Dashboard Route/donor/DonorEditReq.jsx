@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 import moment from 'moment/moment';
 import { Planets } from "react-preloaders";
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import useAllReq from '../../../../hooks/useAllReq';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -20,12 +22,18 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
  
 
-const DonorDashboardCreateReq = () => {
+const DonorEditReq = () => {
+    const {id} = useParams()
 
     const axiosSecure = useAxiosSecure()
    
   //  authProvider user 
     const {user} = useAuth()
+
+    const {AllReq} = useAllReq();
+
+    const singleReq = AllReq.filter((item) => item._id == id)
+    console.log(singleReq[0])
 
     // hook 
 
@@ -81,8 +89,7 @@ const DonorDashboardCreateReq = () => {
      const handleSubmit = (e) => {
       e.preventDefault()
 
-      const name = UserInfo?.name || user?.name;
-      const email = UserInfo?.email || user?.email;
+
       const disTrict = District;
       const Upazilaa = upazila;
       const donationTime = value;
@@ -90,18 +97,14 @@ const DonorDashboardCreateReq = () => {
     
       const hospitalName = e.target.hospitalName.value;
       const recipientName = e.target.recipientName.value;
-      const message = e.target.message.value;
       const fullAddress = e.target.fullAddress.value;
       const requestInfo = {
-        name,
-        email,
         district: disTrict,
         upazila: Upazilaa,
         donationTime,
         donationDate,
         hospitalName,
         recipientName,
-        message,
         fullAddress,
         workStatus: "pending",
       };
@@ -116,23 +119,25 @@ const DonorDashboardCreateReq = () => {
 
         console.log(requestInfo);
 
-        axiosSecure.post("/allRequest", requestInfo)
-  .then(response => {
-    console.log(response.data); 
-    Swal.fire({
-      title: "Good job!",
-      text: "You clicked the button!",
-      icon: "success",
-    });
-  })
-  .catch(error => {
-    console.error("Error sending POST request:", error);
-    Swal.fire({
-      title: "Oops!",
-      text: "Something went wrong while processing your request.",
-      icon: "error",
-    });
-  });
+        axiosSecure
+          .put(`/allRequest?id=${singleReq[0]._id}`, requestInfo)
+          .then((response) => {
+            console.log(response.data);
+            Swal.fire({
+              title: "Good job!",
+              text: "You clicked the button!",
+              icon: "success",
+            });
+          })
+          .catch((error) => {
+            console.error("Error sending PUT request:", error);
+            Swal.fire({
+              title: "Oops!",
+              text: "Something went wrong while processing your request.",
+              icon: "error",
+            });
+          });
+
 }     
       
 
@@ -145,7 +150,7 @@ const DonorDashboardCreateReq = () => {
           <div>
             <div>
               <h2 className="text-3xl md:text-4xl  text-center pb-12">
-                Create Donation <span className="text-red-600">Request</span>
+                Update Donation <span className="text-red-600">Request</span>
               </h2>
             </div>
             <form onSubmit={handleSubmit}>
@@ -248,14 +253,6 @@ const DonorDashboardCreateReq = () => {
                   label="Full Address"
                   name="fullAddress"
                 />
-                <TextField
-                  sx={{ gridColumn: "span 2" }}
-                  id="outlined-multiline-static"
-                  multiline
-                  label="Message"
-                  name="message"
-                  rows={3}
-                />
 
                 <input
                   className="col-span-2 py-2 mb-8 bg-[#C91C1C] rounded-md text-[#f2f2f2]"
@@ -274,4 +271,4 @@ const DonorDashboardCreateReq = () => {
     );
 };
 
-export default DonorDashboardCreateReq;
+export default DonorEditReq;

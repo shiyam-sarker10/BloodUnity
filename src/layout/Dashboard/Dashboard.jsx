@@ -19,7 +19,7 @@ import Typography from "@mui/material/Typography";
 import useAuth from "../../hooks/useAuth";
 import { Avatar } from "@mui/material";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import useUserInfo from "../../hooks/useUserInfo";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
@@ -40,13 +40,22 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const {LogOut} = useAuth()
+
+
+  const handleLogOut = () =>{
+    LogOut()
+    .then(()=>{
+    })
+  }
+
   const drawer = (
-    <div className="bg-[#EB2C29] h-screen">
+    <div className="bg-gradient-to-tl from-[#9c102c] to-[#EB2C29] h-screen">
       <div className="flex flex-col items-center space-y-3 py-8">
         <Avatar
           alt="Remy Sharp"
           src={UserInfo?.imageUrl}
-          sx={{ width: 70, height: 70 }}
+          sx={{ width: 80, height: 80, border:"2px solid white", boxShadow: "0px 0px 15px 2px white" }}
         />
         <Typography
           sx={{
@@ -102,7 +111,7 @@ function ResponsiveDrawer(props) {
       </List>
 
       <Divider />
-      <List>
+      <List onClick={handleLogOut}>
         <ListItem disablePadding>
           <ListItemButton sx={{ color: "white" }}>
             <ListItemIcon>
@@ -128,22 +137,23 @@ function ResponsiveDrawer(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: "rgb(220 38 38)",
+          background: "linear-gradient(to bottom right, #9c102c, #EB2C29)",
         }}
       >
-        <div className="xs:block sm:hidden">
-          <Toolbar>
-            <IconButton
-              color="transparent"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </div>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div">
+            Welcome To Dashboard
+          </Typography>
+        </Toolbar>
       </AppBar>
       <Box
         component="nav"
@@ -192,7 +202,7 @@ function ResponsiveDrawer(props) {
         }}
       >
         <Toolbar />
-        <Outlet />
+        <Outlet></Outlet>
       </Box>
     </Box>
   );
