@@ -12,6 +12,8 @@ import DonorDashboardCreateReq from "../layout/Dashboard/Dashboard Route/donor/D
 import DonorMyReq from "../layout/Dashboard/Dashboard Route/donor/DonorMyReq";
 import DonorEditReq from "../layout/Dashboard/Dashboard Route/donor/DonorEditReq";
 import DonorReqView from './../layout/Dashboard/Dashboard Route/donor/DonorReqView';
+import Search from './../pages/Search/Search';
+import DonationReqDetails from './../pages/DonationReq/DonationReqDetails';
 
 
 const Router = createBrowserRouter([
@@ -24,12 +26,20 @@ const Router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "Donation-Requests",
+        path: "Donation Requests",
         element: <DonationReq></DonationReq>,
       },
       {
         path: "Blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "search",
+        element: <Search></Search>,
+      },
+      {
+        path: "donationReq details/:id",
+        element: <DonationReqDetails></DonationReqDetails>,
       },
     ],
   },

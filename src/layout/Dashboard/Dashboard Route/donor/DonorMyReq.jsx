@@ -49,6 +49,12 @@ const columns = [
     align: "center",
   },
   {
+    id: "district",
+    label: "District",
+    minWidth: 100,
+    align: "center",
+  },
+  {
     id: "edit",
     label: "Edit",
     minWidth: 80,

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
     return (
       <div
@@ -23,12 +25,16 @@ const Banner = () => {
               connect voluntary blood donors around Bangladesh.
             </p>
             <div className="flex  items-center gap-4 md:gap-8">
-              <button className=" px-3 py-2 md:px-8 md:py-3 bg-[#EB2C29] rounded-md text-white font-semibold">
-                Join as a Donor
-              </button>
-              <button className=" px-3 py-2 md:px-8 md:py-3 bg-white rounded-md text-[#EB2C29] font-semibold">
-                Search Donors
-              </button>
+              <Link to="/register">
+                <button className=" px-3 py-2 md:px-8 md:py-3 bg-[#EB2C29] rounded-md text-white font-semibold">
+                  Join as a Donor
+                </button>
+              </Link>
+              <Link to="/search">
+                <button className=" px-3 py-2 md:px-8 md:py-3 bg-white rounded-md text-[#EB2C29] font-semibold">
+                  Search Donors
+                </button>
+              </Link>
             </div>
           </div>
         </div>

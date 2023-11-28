@@ -7,15 +7,16 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Bloodtype } from "@mui/icons-material";
+
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { Button } from "@mui/material";
+import { BiSolidDonateBlood } from 'react-icons/bi';
 
-const pages = ["Home","Donation-Requests", "Blog"];
+
+const pages = ["Home","Donation Requests", "Blog"];
 const settings = ["Profile", "Account", "Dashboard"];
 
 
@@ -68,30 +69,26 @@ function NavBar() {
     <AppBar position="static" sx={{ backgroundColor: "#EB2C29", py: "8px" }}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <Bloodtype
-            sx={{
-              display: { xs: "none", md: "flex" },
-              mr: 1,
-              fontSize: "50px",
-            }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            BloodUnity
-          </Typography>
+          <div className="flex items-center">
+            <BiSolidDonateBlood className="hidden md:flex text-[45px] text-white" />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              BloodUnity
+            </Typography>
+          </div>
 
           {/* responsive  */}
 
@@ -131,7 +128,7 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          
+
           <Typography
             variant="h6"
             noWrap
@@ -155,6 +152,7 @@ function NavBar() {
               flexGrow: 1,
               display: { xs: "none", md: "flex", columnGap: "20px" },
               justifyContent: "center",
+              fontWeight:"500"
             }}
           >
             {pages.map((page) => (

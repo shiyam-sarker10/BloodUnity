@@ -233,7 +233,7 @@ const DonorDashboardCreateReq = () => {
                     />
                   </div>
                   <div className="w-full lg:w-1/2">
-                    <p>Donation Time </p>
+                    <p>Donation Date </p>
                     <div className="border border-[#808080] w-full py-[2px]  ">
                       <DatePicker
                         selected={startDate}
