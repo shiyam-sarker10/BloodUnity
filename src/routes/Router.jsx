@@ -14,6 +14,8 @@ import DonorEditReq from "../layout/Dashboard/Dashboard Route/donor/DonorEditReq
 import DonorReqView from './../layout/Dashboard/Dashboard Route/donor/DonorReqView';
 import Search from './../pages/Search/Search';
 import DonationReqDetails from './../pages/DonationReq/DonationReqDetails';
+import AdminAllUsers from './../layout/Dashboard/Dashboard Route/Admin/AdminAllUsers';
+import AdminDonationReq from './../layout/Dashboard/Dashboard Route/Admin/AdminDonationReq';
 
 
 const Router = createBrowserRouter([
@@ -78,6 +80,15 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/view Request/:id",
         element: <DonorReqView></DonorReqView>,
+      },
+      // adimn dashbaord start
+      {
+        path: "/dashboard/all users",
+        element: <AdminAllUsers></AdminAllUsers>,
+      },
+      {
+        path: "/dashboard/all donation request",
+        element: <AdminDonationReq></AdminDonationReq>,
       },
     ],
   },

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useAllReq from '../../hooks/useAllReq';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const DonationReqDetails = () => {
 
@@ -16,10 +17,11 @@ const [allPendingReq, setAllPendingReq] = useState([]);
         .then((res) => setAllPendingReq(res.data));
     }, []);
 
-    const { AllReq } = useAllReq();
+    const { refetch } = useAllReq();
     const { id } = useParams();
     const filterData = allPendingReq?.find((item) => item?._id == id);
     console.log(filterData, id);
+    const donateNavigate = useNavigate()
 
 
     // handleDelete 
@@ -29,7 +31,13 @@ const [allPendingReq, setAllPendingReq] = useState([]);
 
         axiosSecure.patch(`/allReqDonate?id=${_id}`,{workStatus:'inprogress'})
         .then(()=>{
-            console.log('handle Donate success')
+            Swal.fire({
+              title: "Donation Successful",
+              text: "Thank You for your great Deed",
+              icon: "success",
+            });
+            donateNavigate("/Donation Requests");
+            
         })
         .catch('not success')
     }
