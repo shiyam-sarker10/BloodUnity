@@ -16,7 +16,8 @@ import { Button } from "@mui/material";
 import { BiSolidDonateBlood } from 'react-icons/bi';
 
 
-const pages = ["Home","Donation Requests", "Blog"];
+const pages = ["Home","Donation Requests", "Blog","Payment"];
+const nonpages = ["Home","Donation Requests", "Blog"];
 const settings = ["Profile", "Account", "Dashboard"];
 
 
@@ -121,11 +122,17 @@ function NavBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {user
+                ? pages?.map((page) => (
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  ))
+                : nonpages?.map((page) => (
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  ))}
             </Menu>
           </Box>
 
@@ -152,25 +159,42 @@ function NavBar() {
               flexGrow: 1,
               display: { xs: "none", md: "flex", columnGap: "20px" },
               justifyContent: "center",
-              fontWeight:"500"
+              fontWeight: "500",
             }}
           >
-            {pages.map((page) => (
-              <NavLink
-                key={page}
-                onClick={handleCloseNavMenu}
-                to={`/${page === "Home" ? " " : page}`}
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "border-y-4  border-white "
-                    : ""
-                }
-              >
-                <p className="px-4 py-2">{page}</p>
-              </NavLink>
-            ))}
+            {user
+              ? pages?.map((page) => (
+                  <NavLink
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    to={`/${page === "Home" ? " " : page}`}
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "border-y-4  border-white "
+                        : ""
+                    }
+                  >
+                    <p className="px-4 py-2">{page}</p>
+                  </NavLink>
+                ))
+              : nonpages?.map((page) => (
+                  <NavLink
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    to={`/${page === "Home" ? " " : page}`}
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "border-y-4  border-white "
+                        : ""
+                    }
+                  >
+                    <p className="px-4 py-2">{page}</p>
+                  </NavLink>
+                ))}
           </Box>
 
           {user ? (
@@ -228,14 +252,24 @@ function NavBar() {
               </Menu>
             </Box>
           ) : (
-            <Link to="/register">
-              <button
-                type="button"
-                className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 border-[1px]"
-              >
-                Register
-              </button>
-            </Link>
+            <div className=" flex gap-8">
+              <Link to="/register">
+                <button
+                  type="button"
+                  className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 border-[1px]"
+                >
+                  Register
+                </button>
+              </Link>
+              <Link to="/login">
+                <button
+                  type="button"
+                  className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 border-[1px]"
+                >
+                  Login
+                </button>
+              </Link>
+            </div>
           )}
         </Toolbar>
       </Container>

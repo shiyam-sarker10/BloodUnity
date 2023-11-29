@@ -16,6 +16,9 @@ import Search from './../pages/Search/Search';
 import DonationReqDetails from './../pages/DonationReq/DonationReqDetails';
 import AdminAllUsers from './../layout/Dashboard/Dashboard Route/Admin/AdminAllUsers';
 import AdminDonationReq from './../layout/Dashboard/Dashboard Route/Admin/AdminDonationReq';
+import AdminContentManagement from './../layout/Dashboard/Dashboard Route/Admin/AdminContentManagement';
+import AdminAddBlog from './../layout/Dashboard/Dashboard Route/Admin/AdminAddBlog';
+import Payment from './../pages/Payment/Payment';
 
 
 const Router = createBrowserRouter([
@@ -42,6 +45,10 @@ const Router = createBrowserRouter([
       {
         path: "donationReq details/:id",
         element: <DonationReqDetails></DonationReqDetails>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
     ],
   },
@@ -89,6 +96,18 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/all donation request",
         element: <AdminDonationReq></AdminDonationReq>,
+      },
+      {
+        path: "/dashboard/all donation request/:id",
+        element: <DonorEditReq></DonorEditReq>,
+      },
+      {
+        path: "/dashboard/content management",
+        element: <AdminContentManagement></AdminContentManagement>,
+      },
+      {
+        path: "/dashboard/content management/add blog",
+        element: <AdminAddBlog></AdminAddBlog>,
       },
     ],
   },

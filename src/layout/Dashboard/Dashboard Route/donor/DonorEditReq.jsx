@@ -32,7 +32,7 @@ const DonorEditReq = () => {
 
     const {AllReq} = useAllReq();
 
-    const singleReq = AllReq.filter((item) => item._id == id)
+    const singleReq = AllReq?.filter((item) => item._id == id)
     console.log(singleReq[0])
 
     // hook 

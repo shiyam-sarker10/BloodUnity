@@ -1,11 +1,12 @@
 import React from 'react';
 import useAllReq from '../../../../hooks/useAllReq';
 import { useParams } from 'react-router-dom';
+import useGlobalReq from '../../../../hooks/useGlobalReq';
 
 const DonorReqView = () => {
-    const { AllReq } = useAllReq();
+    const {globalReq} = useGlobalReq()
     const {id} = useParams()
-    const filterData = AllReq?.filter((item) => item._id == id);
+    const filterData = globalReq?.filter((item) => item._id == id);
     console.log(filterData, id);
 
     return (

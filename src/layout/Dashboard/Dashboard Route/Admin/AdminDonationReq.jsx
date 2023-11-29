@@ -63,13 +63,13 @@ const columns = [
   },
   {
     id: "remove",
-    label: "remove",
+    label: "Remove",
     minWidth: 80,
     align: "center",
   },
   {
     id: "view",
-    label: "remove",
+    label: "View",
     minWidth: 80,
     align: "center",
   },
@@ -159,7 +159,7 @@ export default function AdminDonationReq() {
   console.log("this is sub", donorStatusValue, SingleId);
 
   const filterReq = globalReq?.filter(
-    (item) => item.workStatus === statusValue
+    (item) => item?.workStatus === statusValue
   );
   console.log("filterData", filterReq);
   return (
@@ -192,7 +192,7 @@ export default function AdminDonationReq() {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ top: 0, minWidth: column.minWidth }}
+                  style={{ top: 0, minWidth: column.minWidth,fontWeight:'700',fontSize:'15px' }}
                 >
                   {column.label}
                 </TableCell>
@@ -211,7 +211,7 @@ export default function AdminDonationReq() {
                         <TableCell key={column.id} align={column.align}>
                           {column.id === "edit" ? (
                             <Link
-                              to={`/dashboard/editRequest/${row?._id}`}
+                              to={`/dashboard/all donation request/${row?._id}`}
                               className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 pl-2 text-center  rounded"
                             >
                               <BrushIcon
