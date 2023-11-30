@@ -29,6 +29,7 @@ import { FaUsers } from "react-icons/fa";
 import { MdBadge } from "react-icons/md";
 import { FaSuitcaseMedical } from "react-icons/fa6";
 import { IoDocumentTextSharp } from "react-icons/io5";
+import HomeIcon from "@mui/icons-material/Home";
 
 const drawerWidth = 240;
 
@@ -76,7 +77,6 @@ function ResponsiveDrawer(props) {
         >
           {UserInfo?.name}
         </Typography>
-        
       </div>
 
       {UserInfo?.role === "admin" ? (
@@ -91,7 +91,7 @@ function ResponsiveDrawer(props) {
             <Link
               key={index}
               to={`/dashboard${
-                text === "Dashboard" ? "" : `/${text.toLowerCase() }` 
+                text === "Dashboard" ? "" : `/${text.toLowerCase()}`
               }`}
             >
               <ListItem disablePadding>
@@ -162,22 +162,73 @@ function ResponsiveDrawer(props) {
             )
           )}
         </List>
+      ) : UserInfo?.role === "volunteer" ? (
+        <List>
+          {["Dashboard", "All Donation Request", "Content Management"].map(
+            (text, index) => (
+              <Link
+                key={index}
+                to={`/dashboard/${
+                  text === "All Donation Request"
+                    ? "all blood donation request"
+                    : text === "Content Management"
+                    ? "volunteer content management"
+                    : text === "Dashboard"
+                    ? ""
+                    : `/${text.toLowerCase()}`
+                }`}
+              >
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ color: "white" }}>
+                    <ListItemIcon sx={{ color: "white" }}>
+                      {(index === 0 && (
+                        <DashboardIcon
+                          sx={{ mr: 1, fontSize: "25px", color: "white" }}
+                        />
+                      )) ||
+                        (index === 1 && (
+                          <AccountBoxIcon
+                            sx={{ mr: 1, fontSize: "25px", color: "white" }}
+                          />
+                        )) ||
+                        (index === 2 && (
+                          <MedicalServicesIcon
+                            sx={{ mr: 1, fontSize: "25px", color: "white" }}
+                          />
+                        )) ||
+                        (index === 3 && (
+                          <HandshakeIcon
+                            sx={{ mr: 1, fontSize: "25px", color: "white" }}
+                          />
+                        ))}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            )
+          )}
+        </List>
       ) : (
-        "fsdfsdf"
-      )}
+        <div className="text-white p-4">
+          Loadinng .....
+            </div>
+          )}
 
       <Divider />
-      <List onClick={handleLogOut}>
-        <ListItem disablePadding>
-          <ListItemButton sx={{ color: "white" }}>
-            <ListItemIcon>
-              <ExitToAppIcon sx={{ mr: 1, fontSize: "25px", color: "white" }} />
-            </ListItemIcon>
-            LogOut
-            <ListItemText />
-          </ListItemButton>
-        </ListItem>
-      </List>
+      <Link to="/">
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton sx={{ color: "white" }}>
+              <ListItemIcon>
+                <HomeIcon sx={{ mr: 1, fontSize: "25px", color: "white" }} />
+              </ListItemIcon>
+              Home
+              <ListItemText />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Link>
     </div>
   );
 

@@ -9,7 +9,7 @@ const useAllUsers = () => {
       data: AllUsers,
       isLoading,
     } = useQuery({
-      queryKey: ["allReq"],
+      queryKey: ["allUsers"],
 
       queryFn: async () => {
         try {

@@ -22,6 +22,8 @@ import Payment from './../pages/Payment/Payment';
 import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import DonorRoute from "./DonorRoute";
+import VolunteerAllDonationReq from "../layout/Dashboard/Dashboard Route/volunteer/VolunteerAllDonationReq";
+import VolunteerContentManagement from './../layout/Dashboard/Dashboard Route/volunteer/VolunteerContentManagement';
 
 
 const Router = createBrowserRouter([
@@ -147,6 +149,15 @@ const Router = createBrowserRouter([
             <AdminAddBlog></AdminAddBlog>
           </AdminRoute>
         ),
+      },
+      // volunteer start
+      {
+        path: "/dashboard/all blood donation request",
+        element: <VolunteerAllDonationReq></VolunteerAllDonationReq>,
+      },
+      {
+        path: "/dashboard/volunteer content management",
+        element: <VolunteerContentManagement></VolunteerContentManagement>,
       },
     ],
   },

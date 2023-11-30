@@ -143,7 +143,7 @@ export default function AdminAllUsers() {
           });
         Swal.fire({
           title: "Great job!",
-          text: `${name} is now a volunteer`,
+          text: `${name} is now a admin`,
           icon: "success",
         });
       }

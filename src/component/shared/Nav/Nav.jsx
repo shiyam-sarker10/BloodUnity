@@ -18,7 +18,7 @@ import { BiSolidDonateBlood } from 'react-icons/bi';
 
 const pages = ["Home","Donation Requests", "Blog","Payment"];
 const nonpages = ["Home","Donation Requests", "Blog"];
-const settings = ["Profile", "Account", "Dashboard"];
+const settings = ["Profile","Dashboard"];
 
 
  
@@ -228,7 +228,7 @@ function NavBar() {
               >
                 {settings.map((setting) => (
                   <NavLink
-                    to={`/dashboard/${setting}`}
+                    to={`/dashboard/${setting === "Dashboard" ? " " : setting}`}
                     key={setting}
                     onClick={handleCloseUserMenu}
                     className={({ isActive, isPending }) =>

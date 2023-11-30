@@ -312,7 +312,13 @@ console.log("data", AllBlogs)
                                   alt=""
                                 />
                               ) : column.id === "blogStatus" ? (
-                                <p className="font-bold bg-gray-500 py-2 px-4  rounded-lg text-center text-white">
+                                <p
+                                  className={`font-bold ${
+                                    row?.blogStatus === "draft"
+                                      ? "bg-gray-500"
+                                      : "bg-teal-500"
+                                  }  py-2 px-4  rounded-lg text-center text-white`}
+                                >
                                   {row?.blogStatus}
                                 </p>
                               ) : column.id === "publish" ? (
