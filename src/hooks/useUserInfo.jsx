@@ -9,7 +9,12 @@ const useUserInfo = () => {
     const axiosSecure = useAxiosSecure();
 
     const { user } = useAuth();
-    const { refetch, data: UserInfo,isLoading } = useQuery({
+    const {
+      refetch,
+      data: UserInfo,
+      isLoading,
+      isPending,
+    } = useQuery({
       queryKey: ["SingleUser", user?.email],
 
       queryFn: async () => {
@@ -18,12 +23,12 @@ const useUserInfo = () => {
           return res.data[0];
         } catch (error) {
           console.error("Error fetching user information:", error);
-          throw error; 
+          throw error;
         }
       },
       enabled: !!user,
     });
-    return [UserInfo, refetch, isLoading];
+    return [UserInfo, refetch, isLoading, isPending];
 };
 export default useUserInfo;
 

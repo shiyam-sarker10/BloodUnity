@@ -80,6 +80,7 @@ const AuthProvider = ({ children }) => {
     LogOut,
     signIn,
     user,
+    loading,
   };
 
   return (

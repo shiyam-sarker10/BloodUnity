@@ -79,6 +79,17 @@ const CheckoutForm = () => {
       console.log("payment intent", paymentIntent);
       if(paymentIntent.status === 'succeeded'){
         setTransaction(paymentIntent.id);
+
+        const funding = {
+          fund: price,
+        };
+        axiosSecure.post("/funds", funding)
+        .then((res => {
+          console.log(res)
+        }))
+        .catch((error) => {
+          console.log(error);
+        })
       }
     }
   };

@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 
 
-import { Planets, Circle2 } from "react-preloaders";
 
-import Table from "@mui/material/Table";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import TableBody from "@mui/material/TableBody";
-import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import Swal from "sweetalert2";
@@ -64,7 +55,7 @@ const DonationReq = () => {
 
   return (
     <>
-      {user ? (
+      
         <div className=" w-full text-center  my-[62.5px]">
           <div className="text-2xl md:text-4xl py-12 md:py-8">
             Welcome Back,
@@ -138,11 +129,7 @@ const DonationReq = () => {
           </div>
 
         </div>
-      ) : (
-        <div>
-          <Planets color={"#EB2C29"} background="#FCF3F3" />
-        </div>
-      )}
+       
     </>
   );
 };

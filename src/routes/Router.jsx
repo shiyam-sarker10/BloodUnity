@@ -19,6 +19,9 @@ import AdminDonationReq from './../layout/Dashboard/Dashboard Route/Admin/AdminD
 import AdminContentManagement from './../layout/Dashboard/Dashboard Route/Admin/AdminContentManagement';
 import AdminAddBlog from './../layout/Dashboard/Dashboard Route/Admin/AdminAddBlog';
 import Payment from './../pages/Payment/Payment';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
+import DonorRoute from "./DonorRoute";
 
 
 const Router = createBrowserRouter([
@@ -44,11 +47,19 @@ const Router = createBrowserRouter([
       },
       {
         path: "donationReq details/:id",
-        element: <DonationReqDetails></DonationReqDetails>,
+        element: (
+          <PrivateRoute>
+            <DonationReqDetails></DonationReqDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -74,11 +85,19 @@ const Router = createBrowserRouter([
       },
       {
         path: "/dashboard/create request",
-        element: <DonorDashboardCreateReq></DonorDashboardCreateReq>,
+        element: (
+          <DonorRoute>
+            <DonorDashboardCreateReq></DonorDashboardCreateReq>
+          </DonorRoute>
+        ),
       },
       {
         path: "/dashboard/my request",
-        element: <DonorMyReq></DonorMyReq>,
+        element: (
+          <DonorRoute>
+            <DonorMyReq></DonorMyReq>
+          </DonorRoute>
+        ),
       },
       {
         path: "/dashboard/editRequest/:id",
@@ -86,16 +105,28 @@ const Router = createBrowserRouter([
       },
       {
         path: "/dashboard/view Request/:id",
-        element: <DonorReqView></DonorReqView>,
+        element: (
+          <DonorRoute>
+            <DonorReqView></DonorReqView>
+          </DonorRoute>
+        ),
       },
       // adimn dashbaord start
       {
         path: "/dashboard/all users",
-        element: <AdminAllUsers></AdminAllUsers>,
+        element: (
+          <AdminRoute>
+            <AdminAllUsers></AdminAllUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/all donation request",
-        element: <AdminDonationReq></AdminDonationReq>,
+        element: (
+          <AdminRoute>
+            <AdminDonationReq></AdminDonationReq>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/all donation request/:id",
@@ -103,11 +134,19 @@ const Router = createBrowserRouter([
       },
       {
         path: "/dashboard/content management",
-        element: <AdminContentManagement></AdminContentManagement>,
+        element: (
+          <AdminRoute>
+            <AdminContentManagement></AdminContentManagement>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/content management/add blog",
-        element: <AdminAddBlog></AdminAddBlog>,
+        element: (
+          <AdminRoute>
+            <AdminAddBlog></AdminAddBlog>
+          </AdminRoute>
+        ),
       },
     ],
   },
