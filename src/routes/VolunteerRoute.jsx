@@ -6,7 +6,7 @@ const VolunteerRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const [UserInfo, refetch, isLoading] = useUserInfo();
 
-  if (loading || isLoading) {
+  if (loading || !UserInfo) {
     return <progress className="progress w-56"></progress>;
   }
 

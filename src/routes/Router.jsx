@@ -24,12 +24,15 @@ import AdminRoute from './AdminRoute';
 import DonorRoute from "./DonorRoute";
 import VolunteerAllDonationReq from "../layout/Dashboard/Dashboard Route/volunteer/VolunteerAllDonationReq";
 import VolunteerContentManagement from './../layout/Dashboard/Dashboard Route/volunteer/VolunteerContentManagement';
+import VolunteerRoute from './VolunteerRoute';
+import Error from "../pages/Error/Error";
 
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<Error></Error>,
     children: [
       {
         index: true,
@@ -153,11 +156,19 @@ const Router = createBrowserRouter([
       // volunteer start
       {
         path: "/dashboard/all blood donation request",
-        element: <VolunteerAllDonationReq></VolunteerAllDonationReq>,
+        element: (
+          <VolunteerRoute>
+            <VolunteerAllDonationReq></VolunteerAllDonationReq>
+          </VolunteerRoute>
+        ),
       },
       {
         path: "/dashboard/volunteer content management",
-        element: <VolunteerContentManagement></VolunteerContentManagement>,
+        element: (
+          <VolunteerRoute>
+            <VolunteerContentManagement></VolunteerContentManagement>
+          </VolunteerRoute>
+        ),
       },
     ],
   },
