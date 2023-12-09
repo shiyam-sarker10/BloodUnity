@@ -5,7 +5,7 @@
 
 ## Technologies Used in this project
 
-  <img alt="My Skills" src="https://skillicons.dev/icons?i=react,tailwindcss,javascript,tailwindcss,firebase,materialui,MongoDB,express&perline=4">
+  <img alt="My Skills" src="https://skillicons.dev/icons?i=react,tailwindcss,javascript,tailwindcss,firebase,materialui,mongodb,express&perline=5">
 
 
 ## Features:
