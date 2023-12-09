@@ -1,8 +1,14 @@
-# React + Vite
+# BloodUnity
+### Blood Unity is a project which is based on  Blood donation  where people donate Blood or can make blood donation  Req
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+## Technologies Used in this project
+
+  <img alt="My Skills" src="https://skillicons.dev/icons?i=react,tailwindcss,javascript,tailwindcss,firebase,materialui,MongoDB,express&perline=4">
+
+
+## Features:
+
+- This project has payment gat
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
